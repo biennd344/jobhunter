@@ -4,12 +4,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import vn.bin.jobhunter.domain.User;
 import vn.bin.jobhunter.service.UserService;
+import vn.bin.jobhunter.service.error.IdInvalidException;
 
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,8 +32,16 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(userResult);
     }
 
+    @ExceptionHandler(value = IdInvalidException.class)
+    public ResponseEntity<String> handleIdException(IdInvalidException idException) {
+        return ResponseEntity.badRequest().body(idException.getMessage());
+    }
+
     @DeleteMapping("/users/{id}")
-    public ResponseEntity<String> DeleteUser(@PathVariable("id") long id) {
+    public ResponseEntity<String> DeleteUser(@PathVariable("id") long id) throws IdInvalidException {
+        if (id >= 1500) {
+            throw new IdInvalidException("id k lon hon 1500");
+        }
         this.userService.handleDeleteUser(id);
         // return ResponseEntity.ok("bin");
         return ResponseEntity.status(HttpStatus.OK).body("bin");
