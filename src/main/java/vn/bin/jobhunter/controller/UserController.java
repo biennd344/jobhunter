@@ -7,6 +7,8 @@ import vn.bin.jobhunter.service.UserService;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,35 +24,35 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/user")
-    public User createNewUser(@RequestBody User user) {
-
+    @PostMapping("/users")
+    public ResponseEntity<User> createNewUser(@RequestBody User user) {
         User userResult = this.userService.handleCreateUser(user);
-        return userResult;
+        return ResponseEntity.status(HttpStatus.CREATED).body(userResult);
     }
 
-    @DeleteMapping("/user/{id}")
-    public String DeleteUser(@PathVariable("id") long id) {
+    @DeleteMapping("/users/{id}")
+    public ResponseEntity<String> DeleteUser(@PathVariable("id") long id) {
         this.userService.handleDeleteUser(id);
-        return "binnn";
+        // return ResponseEntity.ok("bin");
+        return ResponseEntity.status(HttpStatus.OK).body("bin");
     }
 
-    @GetMapping("/user/{id}")
-    public User fetchUserById(@PathVariable("id") long id) {
+    @GetMapping("/users/{id}")
+    public ResponseEntity<User> fetchUserById(@PathVariable("id") long id) {
         User user = this.userService.fetchUserById(id);
-        return user;
+        return ResponseEntity.status(HttpStatus.OK).body(user);
     }
 
-    @GetMapping("/user")
-    public List<User> fetchAllUser() {
+    @GetMapping("/users")
+    public ResponseEntity<List<User>> fetchAllUser() {
         List<User> users = this.userService.fetchAllUser();
-        return users;
+        return ResponseEntity.status(HttpStatus.OK).body(users);
     }
 
-    @PutMapping("/user")
-    public User updateUser(@RequestBody User user) {
+    @PutMapping("/users")
+    public ResponseEntity<User> updateUser(@RequestBody User user) {
 
         User userResult = this.userService.handleUpdateUser(user);
-        return userResult;
+        return ResponseEntity.status(HttpStatus.OK).body(userResult);
     }
 }
