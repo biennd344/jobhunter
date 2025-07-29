@@ -17,10 +17,10 @@ import vn.bin.jobhunter.domain.RestResponse;
 
 @RestControllerAdvice
 public class GlobalException {
-    @ExceptionHandler(value = { IdInvalidException.class,
+    @ExceptionHandler(value = {
             UsernameNotFoundException.class,
             BadCredentialsException.class })
-    public ResponseEntity<RestResponse<Object>> handleIdException(IdInvalidException idException) {
+    public ResponseEntity<RestResponse<Object>> handleIdException(Exception idException) {
         RestResponse<Object> res = new RestResponse<Object>();
         res.setStatusCode(HttpStatus.BAD_REQUEST.value());
         res.setError(idException.getMessage());
