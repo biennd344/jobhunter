@@ -2,6 +2,7 @@ package vn.bin.jobhunter.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
 import vn.bin.jobhunter.domain.User;
 import vn.bin.jobhunter.service.UserService;
 import vn.bin.jobhunter.util.error.IdInvalidException;
@@ -29,7 +30,7 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<User> createNewUser(@RequestBody User user) {
+    public ResponseEntity<User> createNewUser(@Valid @RequestBody User user) {
         String hashPassword = this.passwordEncoder.encode(user.getPassword());
         user.setPassword(hashPassword);
 

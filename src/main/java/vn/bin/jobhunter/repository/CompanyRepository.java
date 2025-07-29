@@ -3,9 +3,9 @@ package vn.bin.jobhunter.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import vn.bin.jobhunter.domain.User;
+import vn.bin.jobhunter.domain.Company;
 
 @Repository
-public interface UserReposiriory extends JpaRepository<User, Long> {
-    User findByEmail(String email);
+public interface CompanyRepository extends JpaRepository<Company, Long> {
+
 }
