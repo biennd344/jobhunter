@@ -2,13 +2,19 @@ package vn.bin.jobhunter.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.turkraft.springfilter.boot.Filter;
+
 import jakarta.validation.Valid;
 import vn.bin.jobhunter.domain.User;
+import vn.bin.jobhunter.domain.dto.ResultPaginationDTO;
 import vn.bin.jobhunter.service.UserService;
 import vn.bin.jobhunter.util.error.IdInvalidException;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,6 +24,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 public class UserController {
@@ -55,9 +62,14 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public ResponseEntity<List<User>> fetchAllUser() {
-        List<User> users = this.userService.fetchAllUser();
-        return ResponseEntity.status(HttpStatus.OK).body(users);
+    public ResponseEntity<ResultPaginationDTO> fetchAllUser(@Filter Specification<User> specification,
+            Pageable pageable
+    // ,@RequestParam("current") Optional<String> currentOptional,
+    // @RequestParam("pageSize") Optional<String> pageSizeOptional
+    )
+
+    {
+        return ResponseEntity.status(HttpStatus.OK).body(this.userService.fetchAllUser(specification, pageable));
     }
 
     @PutMapping("/users")

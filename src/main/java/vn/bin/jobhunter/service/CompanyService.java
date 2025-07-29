@@ -5,9 +5,11 @@ import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import vn.bin.jobhunter.domain.Company;
+import vn.bin.jobhunter.domain.User;
 import vn.bin.jobhunter.domain.dto.Meta;
 import vn.bin.jobhunter.domain.dto.ResultPaginationDTO;
 import vn.bin.jobhunter.repository.CompanyRepository;
@@ -31,11 +33,11 @@ public class CompanyService {
         this.companyRepository.deleteById(id);
     }
 
-    public ResultPaginationDTO fetchAllCompany(Pageable pageable) {
-        Page<Company> pageCompany = this.companyRepository.findAll(pageable);
+    public ResultPaginationDTO fetchAllCompany(Specification<Company> specification, Pageable pageable) {
+        Page<Company> pageCompany = this.companyRepository.findAll(specification, pageable);
         ResultPaginationDTO rs = new ResultPaginationDTO();
         Meta mt = new Meta();
-        mt.setPage(pageCompany.getNumber());
+        mt.setPage(pageCompany.getNumber() + 1);
         mt.setPageSize(pageCompany.getSize());
 
         mt.setPages(pageCompany.getTotalPages());
