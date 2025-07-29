@@ -49,7 +49,6 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
         res.setMessage("Token k hop le (het han, k dung dinh dang, hoac khong truyen jwt o header,..)");
         mapper.writeValue(response.getWriter(), res);
 
-        // TODO Auto-generated method stub
     }
 
 }
