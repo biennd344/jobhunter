@@ -1,6 +1,5 @@
 package vn.bin.jobhunter.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -9,7 +8,6 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import vn.bin.jobhunter.domain.Company;
-import vn.bin.jobhunter.domain.User;
 import vn.bin.jobhunter.domain.dto.Meta;
 import vn.bin.jobhunter.domain.dto.ResultPaginationDTO;
 import vn.bin.jobhunter.repository.CompanyRepository;
