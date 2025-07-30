@@ -19,6 +19,7 @@ import jakarta.validation.Valid;
 import vn.bin.jobhunter.domain.Company;
 import vn.bin.jobhunter.domain.dto.ResultPaginationDTO;
 import vn.bin.jobhunter.service.CompanyService;
+import vn.bin.jobhunter.util.annotation.ApiMessage;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -53,6 +54,7 @@ public class CompanyController {
     }
 
     @GetMapping("/companies")
+    @ApiMessage("fetch companies")
     public ResponseEntity<ResultPaginationDTO> fetchAllCompany(
 
             @Filter Specification<Company> specification,
