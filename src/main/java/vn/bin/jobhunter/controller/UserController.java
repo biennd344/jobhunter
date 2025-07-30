@@ -6,10 +6,10 @@ import com.turkraft.springfilter.boot.Filter;
 
 import jakarta.validation.Valid;
 import vn.bin.jobhunter.domain.User;
-import vn.bin.jobhunter.domain.dto.ResCreateUserDTO;
-import vn.bin.jobhunter.domain.dto.ResUpdateUserDTO;
-import vn.bin.jobhunter.domain.dto.ResUserDTO;
-import vn.bin.jobhunter.domain.dto.ResultPaginationDTO;
+import vn.bin.jobhunter.domain.response.ResCreateUserDTO;
+import vn.bin.jobhunter.domain.response.ResUpdateUserDTO;
+import vn.bin.jobhunter.domain.response.ResUserDTO;
+import vn.bin.jobhunter.domain.response.ResultPaginationDTO;
 import vn.bin.jobhunter.service.UserService;
 import vn.bin.jobhunter.util.annotation.ApiMessage;
 import vn.bin.jobhunter.util.error.IdInvalidException;
