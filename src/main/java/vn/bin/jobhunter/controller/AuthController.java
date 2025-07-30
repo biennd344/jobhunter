@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
 import vn.bin.jobhunter.domain.User;
-import vn.bin.jobhunter.domain.dto.ReqLoginDTO;
+import vn.bin.jobhunter.domain.request.ReqLoginDTO;
 import vn.bin.jobhunter.domain.response.ResLoginDTO;
 import vn.bin.jobhunter.service.UserService;
 import vn.bin.jobhunter.util.SecurityUtil;
