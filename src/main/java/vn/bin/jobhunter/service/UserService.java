@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import vn.bin.jobhunter.domain.Company;
 import vn.bin.jobhunter.domain.User;
 import vn.bin.jobhunter.domain.response.ResCreateUserDTO;
 import vn.bin.jobhunter.domain.response.ResUpdateUserDTO;
@@ -19,12 +20,18 @@ import vn.bin.jobhunter.repository.UserReposiriory;
 @Service
 public class UserService {
     private final UserReposiriory userReposiriory;
+    private final CompanyService companyService;
 
-    public UserService(UserReposiriory userReposiriory) {
+    public UserService(UserReposiriory userReposiriory, CompanyService companyService) {
         this.userReposiriory = userReposiriory;
+        this.companyService = companyService;
     }
 
     public User handleCreateUser(User user) {
+        if (user.getCompany() != null) {
+            Optional<Company> companyOptional = this.companyService.findById(user.getCompany().getId());
+            user.setCompany(companyOptional.isPresent() ? companyOptional.get() : null);
+        }
 
         return this.userReposiriory.save(user);
     }
@@ -60,7 +67,10 @@ public class UserService {
                 item.getAddress(),
                 item.getAge(),
                 item.getUpdatedAt(),
-                item.getCreatedAt()))
+                item.getCreatedAt(),
+                new ResUserDTO.CompanyUser(
+                        item.getCompany() != null ? item.getCompany().getId() : 0,
+                        item.getCompany() != null ? item.getCompany().getName() : null)))
                 .collect(Collectors.toList());
 
         rs.setResult(listUser);
@@ -74,6 +84,10 @@ public class UserService {
             currentUser.setGender(requser.getGender());
             currentUser.setAge(requser.getAge());
             currentUser.setName(requser.getName());
+            if (requser.getCompany() != null) {
+                Optional<Company> companyOptional = this.companyService.findById(requser.getCompany().getId());
+                requser.setCompany(companyOptional.isPresent() ? companyOptional.get() : null);
+            }
 
             // update
             currentUser = this.userReposiriory.save(currentUser);
@@ -91,6 +105,7 @@ public class UserService {
 
     public ResCreateUserDTO convertToResCreateUserDTO(User user) {
         ResCreateUserDTO res = new ResCreateUserDTO();
+        ResCreateUserDTO.CompanyUser com = new ResCreateUserDTO.CompanyUser();
         res.setId(user.getId());
         res.setAddress(user.getAddress());
         res.setAge(user.getAge());
@@ -98,12 +113,23 @@ public class UserService {
         res.setEmail(user.getEmail());
         res.setGender(user.getGender());
         res.setCreatedAt(user.getCreatedAt());
+        if (user.getCompany() != null) {
+            com.setId(user.getCompany().getId());
+            com.setName(user.getCompany().getName());
+            res.setCompany(com);
+        }
         return res;
 
     }
 
     public ResUserDTO convertToResUserDTO(User user) {
         ResUserDTO res = new ResUserDTO();
+        ResUserDTO.CompanyUser com = new ResUserDTO.CompanyUser();
+        if (user.getCompany() != null) {
+            com.setId(user.getCompany().getId());
+            com.setName(user.getCompany().getName());
+            res.setCompany(com);
+        }
         res.setId(user.getId());
         res.setAddress(user.getAddress());
         res.setAge(user.getAge());
@@ -118,6 +144,12 @@ public class UserService {
 
     public ResUpdateUserDTO convertToResUpdateUserDTO(User user) {
         ResUpdateUserDTO res = new ResUpdateUserDTO();
+        ResUpdateUserDTO.CompanyUser com = new ResUpdateUserDTO.CompanyUser();
+        if (user.getCompany() != null) {
+            com.setId(user.getCompany().getId());
+            com.setName(user.getCompany().getName());
+            res.setCompany(com);
+        }
         res.setId(user.getId());
         res.setAddress(user.getAddress());
         res.setAge(user.getAge());
