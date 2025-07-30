@@ -50,8 +50,8 @@ public class AuthController {
         // xác thực người dùng => cần viết hàm loadUserByUsername
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
 
-        // create access token
-
+        // set bthong tin dang nhap cua nguoi dung dang nhap vao context (co the su dung
+        // sau nay)
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         ResLoginDTO res = new ResLoginDTO();
