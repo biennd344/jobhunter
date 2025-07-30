@@ -9,4 +9,6 @@ import vn.bin.jobhunter.domain.User;
 @Repository
 public interface UserReposiriory extends JpaRepository<User, Long>, JpaSpecificationExecutor<User> {
     User findByEmail(String email);
+
+    boolean existsByEmail(String email);
 }
