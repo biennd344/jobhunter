@@ -1,5 +1,7 @@
 package vn.bin.jobhunter.controller;
 
+import java.util.Optional;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
@@ -16,8 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.turkraft.springfilter.boot.Filter;
 
 import jakarta.validation.Valid;
+import vn.bin.jobhunter.domain.Resume;
 import vn.bin.jobhunter.domain.Role;
 import vn.bin.jobhunter.domain.response.ResultPaginationDTO;
+import vn.bin.jobhunter.domain.response.resume.ResFetchResumeDTO;
 import vn.bin.jobhunter.service.RoleService;
 import vn.bin.jobhunter.util.annotation.ApiMessage;
 import vn.bin.jobhunter.util.error.IdInvalidException;
@@ -74,6 +78,17 @@ public class RoleController {
             Pageable pageable) {
 
         return ResponseEntity.status(HttpStatus.OK).body(this.roleService.getRoles(spec, pageable));
+    }
+
+    @GetMapping("/roles/{id}")
+    @ApiMessage("Fetch a roles by id")
+    public ResponseEntity<Role> fetchById(@PathVariable("id") long id) throws IdInvalidException {
+        Role role = this.roleService.fetchById(id);
+        if (role == null) {
+            throw new IdInvalidException("Resume voi id = " + id + "khong ton tai");
+        }
+
+        return ResponseEntity.ok().body(role);
     }
 
 }

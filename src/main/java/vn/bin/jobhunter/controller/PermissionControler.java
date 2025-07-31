@@ -51,7 +51,10 @@ public class PermissionControler {
             throw new IdInvalidException("Permission id = " + p.getId() + "k ton tai");
         }
         if (this.permissionService.isPermissionExits(p)) {
-            throw new IdInvalidException("Permission name da ton tai");
+            if (this.permissionService.isSameName(p)) {
+                throw new IdInvalidException("Permission name da ton tai");
+            }
+
         }
 
         return ResponseEntity.status(HttpStatus.CREATED).body(this.permissionService.update(p));
