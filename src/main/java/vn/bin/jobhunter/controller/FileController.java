@@ -2,8 +2,7 @@ package vn.bin.jobhunter.controller;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
+
 import java.net.URISyntaxException;
 import java.time.Instant;
 import java.util.Arrays;
