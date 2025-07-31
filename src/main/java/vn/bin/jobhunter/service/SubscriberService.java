@@ -1,15 +1,16 @@
 package vn.bin.jobhunter.service;
 
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-import jakarta.validation.Valid;
+import org.springframework.stereotype.Service;
+
 import vn.bin.jobhunter.domain.Skill;
 import vn.bin.jobhunter.domain.Subscriber;
 import vn.bin.jobhunter.repository.SkillRepository;
 import vn.bin.jobhunter.repository.SubscriberRepository;
 
+@Service
 public class SubscriberService {
     private final SubscriberRepository subscriberRepository;
     private final SkillRepository skillRepository;
