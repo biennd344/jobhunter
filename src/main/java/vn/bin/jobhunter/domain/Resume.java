@@ -13,6 +13,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 import vn.bin.jobhunter.util.SecurityUtil;
@@ -26,14 +27,18 @@ public class Resume {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "email k dc de trong")
     private String email;
+    @NotBlank(message = "url k dc de trong(upload cv ch thanh cong)")
+
     private String url;
     @Enumerated(EnumType.STRING)
     private ResumeStateEnum status;
 
     private Instant createdAt;
-    private Instant updatedAt;
     private String createdBy;
+    private Instant updatedAt;
+
     private String updatedBy;
 
     @ManyToOne

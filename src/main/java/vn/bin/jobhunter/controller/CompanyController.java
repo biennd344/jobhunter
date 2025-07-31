@@ -1,5 +1,7 @@
 package vn.bin.jobhunter.controller;
 
+import java.util.Optional;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
@@ -48,9 +50,10 @@ public class CompanyController {
     }
 
     @GetMapping("/companies/{id}")
+    @ApiMessage("fetch companie by id")
     public ResponseEntity<Company> fetchCompanyById(@PathVariable("id") long id) {
-        Company company = this.companyService.fetchCompanyById(id);
-        return ResponseEntity.status(HttpStatus.OK).body(company);
+        Optional<Company> cOptional = this.companyService.findById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(cOptional.get());
     }
 
     @GetMapping("/companies")
