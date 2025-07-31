@@ -14,4 +14,7 @@ public interface SkillRepository extends JpaRepository<Skill, Long>, JpaSpecific
     boolean existsByName(String name);
 
     List<Skill> findAllByIdIn(List<Long> id);
+
+    List<Skill> findByIdIn(List<Long> reqSkills);
+
 }
