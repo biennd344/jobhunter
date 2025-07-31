@@ -101,4 +101,12 @@ public class ResumeController {
         return ResponseEntity.ok().body(this.resumeService.fetchAllresume(spec, pageable));
     }
 
+    @PostMapping("/resumes/by-user")
+    @ApiMessage("Fetch list resume by user")
+    public ResponseEntity<ResultPaginationDTO> fetchResumeByUser(Pageable pageable)
+            throws IdInvalidException {
+
+        return ResponseEntity.ok().body(this.resumeService.fetchResumeByUser(pageable));
+    }
+
 }
