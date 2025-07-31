@@ -47,44 +47,44 @@ public class DatabaseInitializer implements CommandLineRunner {
             arr.add(new Permission("GET a company by id ", "/api/v1/companies/{id}", "GET", "COMPANIES"));
             arr.add(new Permission("GET companies with pagination  ", "/api/v1/companies", "GET", "COMPANIES"));
 
-            arr.add(new Permission("create a job", "/api/v1/jobs", "POST", "COMPANIES"));
-            arr.add(new Permission("update a job", "/api/v1/jobs", "PUT", "COMPANIES"));
-            arr.add(new Permission("DELETE a job", "/api/v1/jobs/{id}", "DELETE", "COMPANIES"));
-            arr.add(new Permission("GET a job by id", "/api/v1/jobs/{id}", "GET", "COMPANIES"));
-            arr.add(new Permission("GET jobs with pagination  ", "/api/v1/jobs", "GET", "COMPANIES"));
+            arr.add(new Permission("create a job", "/api/v1/jobs", "POST", "JOBS"));
+            arr.add(new Permission("update a job", "/api/v1/jobs", "PUT", "JOBS"));
+            arr.add(new Permission("DELETE a job", "/api/v1/jobs/{id}", "DELETE", "JOBS"));
+            arr.add(new Permission("GET a job by id", "/api/v1/jobs/{id}", "GET", "JOBS"));
+            arr.add(new Permission("GET jobs with pagination  ", "/api/v1/jobs", "GET", "JOBS"));
 
-            arr.add(new Permission("create a permission", "/api/v1/permissions", "POST", "COMPANIES"));
-            arr.add(new Permission("update a permission", "/api/v1/permissions", "PUT", "COMPANIES"));
-            arr.add(new Permission("DELETE a permission", "/api/v1/permissions/{id}", "DELETE", "COMPANIES"));
-            arr.add(new Permission("GET a permission by id", "/api/v1/permissions/{id}", "GET", "COMPANIES"));
-            arr.add(new Permission("GET permissions with pagination  ", "/api/v1/permissions", "GET", "COMPANIES"));
+            arr.add(new Permission("create a permission", "/api/v1/permissions", "POST", "PERMISSIONS"));
+            arr.add(new Permission("update a permission", "/api/v1/permissions", "PUT", "PERMISSIONS"));
+            arr.add(new Permission("DELETE a permission", "/api/v1/permissions/{id}", "DELETE", "PERMISSIONS"));
+            arr.add(new Permission("GET a permission by id", "/api/v1/permissions/{id}", "GET", "PERMISSIONS"));
+            arr.add(new Permission("GET permissions with pagination  ", "/api/v1/permissions", "GET", "PERMISSIONS"));
 
-            arr.add(new Permission("create a resume", "/api/v1/resumes", "POST", "COMPANIES"));
-            arr.add(new Permission("update a resume", "/api/v1/resumes", "PUT", "COMPANIES"));
-            arr.add(new Permission("DELETE a resume", "/api/v1/resumes/{id}", "DELETE", "COMPANIES"));
-            arr.add(new Permission("GET a resume by id", "/api/v1/resumes/{id}", "GET", "COMPANIES"));
-            arr.add(new Permission("GET resumes with pagination  ", "/api/v1/resumes", "GET", "COMPANIES"));
+            arr.add(new Permission("create a resume", "/api/v1/resumes", "POST", "RESUMES"));
+            arr.add(new Permission("update a resume", "/api/v1/resumes", "PUT", "RESUMES"));
+            arr.add(new Permission("DELETE a resume", "/api/v1/resumes/{id}", "DELETE", "RESUMES"));
+            arr.add(new Permission("GET a resume by id", "/api/v1/resumes/{id}", "GET", "RESUMES"));
+            arr.add(new Permission("GET resumes with pagination  ", "/api/v1/resumes", "GET", "RESUMES"));
 
-            arr.add(new Permission("create a role", "/api/v1/roles", "POST", "COMPANIES"));
-            arr.add(new Permission("update a role", "/api/v1/roles", "PUT", "COMPANIES"));
-            arr.add(new Permission("DELETE a role", "/api/v1/roles/{id}", "DELETE", "COMPANIES"));
-            arr.add(new Permission("GET a role by id", "/api/v1/roles/{id}", "GET", "COMPANIES"));
-            arr.add(new Permission("GET roles with pagination  ", "/api/v1/roles", "GET", "COMPANIES"));
+            arr.add(new Permission("create a role", "/api/v1/roles", "POST", "ROLES"));
+            arr.add(new Permission("update a role", "/api/v1/roles", "PUT", "ROLES"));
+            arr.add(new Permission("DELETE a role", "/api/v1/roles/{id}", "DELETE", "ROLES"));
+            arr.add(new Permission("GET a role by id", "/api/v1/roles/{id}", "GET", "ROLES"));
+            arr.add(new Permission("GET roles with pagination  ", "/api/v1/roles", "GET", "ROLES"));
 
-            arr.add(new Permission("create a user", "/api/v1/users", "POST", "COMPANIES"));
-            arr.add(new Permission("update a user", "/api/v1/users", "PUT", "COMPANIES"));
-            arr.add(new Permission("DELETE a user", "/api/v1/users/{id}", "DELETE", "COMPANIES"));
-            arr.add(new Permission("GET a users by id", "/api/v1/users/{id}", "GET", "COMPANIES"));
-            arr.add(new Permission("GET users with pagination  ", "/api/v1/users", "GET", "COMPANIES"));
+            arr.add(new Permission("create a user", "/api/v1/users", "POST", "USERS"));
+            arr.add(new Permission("update a user", "/api/v1/users", "PUT", "USERS"));
+            arr.add(new Permission("DELETE a user", "/api/v1/users/{id}", "DELETE", "USERS"));
+            arr.add(new Permission("GET a users by id", "/api/v1/users/{id}", "GET", "USERS"));
+            arr.add(new Permission("GET users with pagination  ", "/api/v1/users", "GET", "USERS"));
 
-            arr.add(new Permission("create a subscriber", "/api/v1/subscribers", "POST", "COMPANIES"));
-            arr.add(new Permission("update a subscriber", "/api/v1/subscribers", "PUT", "COMPANIES"));
-            arr.add(new Permission("DELETE a subscriber", "/api/v1/subscribers/{id}", "DELETE", "COMPANIES"));
-            arr.add(new Permission("GET a subscriber by id", "/api/v1/subscribers/{id}", "GET", "COMPANIES"));
-            arr.add(new Permission("GET subscribers with pagination  ", "/api/v1/subscribers", "GET", "COMPANIES"));
+            arr.add(new Permission("create a subscriber", "/api/v1/subscribers", "POST", "SUBCRIBERS"));
+            arr.add(new Permission("update a subscriber", "/api/v1/subscribers", "PUT", "SUBCRIBERS"));
+            arr.add(new Permission("DELETE a subscriber", "/api/v1/subscribers/{id}", "DELETE", "SUBCRIBERS"));
+            arr.add(new Permission("GET a subscriber by id", "/api/v1/subscribers/{id}", "GET", "SUBCRIBERS"));
+            arr.add(new Permission("GET subscribers with pagination  ", "/api/v1/subscribers", "GET", "SUBCRIBERS"));
 
-            arr.add(new Permission("Download a file", "/api/v1/files", "POST", "COMPANIES"));
-            arr.add(new Permission("Upload a file ", "/api/v1/files", "GET", "COMPANIES"));
+            arr.add(new Permission("Download a file", "/api/v1/files", "POST", "FILES"));
+            arr.add(new Permission("Upload a file ", "/api/v1/files", "GET", "FILES"));
             this.permissionRepository.saveAll(arr);
         }
 
