@@ -28,7 +28,7 @@ public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank(message = "username k dc de trong")
+    @NotBlank(message = "name k dc de trong")
     private String name;
     @Column(columnDefinition = "MEDIUMTEXT")
     private String description;

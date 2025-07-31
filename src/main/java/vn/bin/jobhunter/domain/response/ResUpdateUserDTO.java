@@ -2,9 +2,7 @@ package vn.bin.jobhunter.domain.response;
 
 import java.time.Instant;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import vn.bin.jobhunter.util.constant.GenderEnum;
 

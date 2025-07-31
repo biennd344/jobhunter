@@ -5,7 +5,6 @@ import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
-import vn.bin.jobhunter.domain.Skill;
 import vn.bin.jobhunter.util.constant.LevelEnum;
 
 @Getter

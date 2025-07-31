@@ -7,8 +7,6 @@ import com.turkraft.springfilter.boot.Filter;
 
 import jakarta.validation.Valid;
 import vn.bin.jobhunter.domain.Job;
-import vn.bin.jobhunter.domain.Skill;
-import vn.bin.jobhunter.domain.response.ResCreateUserDTO;
 import vn.bin.jobhunter.domain.response.ResultPaginationDTO;
 import vn.bin.jobhunter.domain.response.job.ResCreateJobDTO;
 import vn.bin.jobhunter.service.JobService;
@@ -20,11 +18,12 @@ import java.util.Optional;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
@@ -42,7 +41,7 @@ public class JobController {
         return ResponseEntity.status(HttpStatus.CREATED).body(this.jobService.create(job));
     }
 
-    @PostMapping("/jobs")
+    @PutMapping("/jobs")
     @ApiMessage("update a job")
     public ResponseEntity<ResCreateJobDTO> update(@Valid @RequestBody Job job) throws IdInvalidException {
         Optional<Job> currentJob = this.jobService.fetchJobById(job.getId());
@@ -53,7 +52,7 @@ public class JobController {
         return ResponseEntity.ok().body(this.jobService.update(job));
     }
 
-    @PostMapping("/jobs/{id}")
+    @DeleteMapping("/jobs/{id}")
     @ApiMessage("delete a job")
     public ResponseEntity<Void> delete(@PathVariable("id") long id) throws IdInvalidException {
         Optional<Job> currentJob = this.jobService.fetchJobById(id);
