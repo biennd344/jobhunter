@@ -15,7 +15,9 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import vn.bin.jobhunter.util.SecurityUtil;
 
@@ -23,6 +25,8 @@ import vn.bin.jobhunter.util.SecurityUtil;
 @Table(name = "permissions")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Permission {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,6 +46,16 @@ public class Permission {
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "permissions")
     @JsonIgnore
     private List<Role> roles;
+
+    public Permission(@NotBlank(message = "name k dc de trong") String name,
+            @NotBlank(message = "apiPath k dc de trong") String apiPath,
+            @NotBlank(message = "method k dc de trong") String method,
+            @NotBlank(message = "module k dc de trong") String module) {
+        this.name = name;
+        this.apiPath = apiPath;
+        this.method = method;
+        this.module = module;
+    }
 
     @PrePersist
     public void handleBeforeCreate() {

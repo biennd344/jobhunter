@@ -127,16 +127,22 @@ public class UserService {
         ResUserDTO res = new ResUserDTO();
         ResUserDTO.CompanyUser com = new ResUserDTO.CompanyUser();
         ResUserDTO.RoleUser roleUser = new ResUserDTO.RoleUser();
+
+        // Xử lý company (phải check null)
         if (user.getCompany() != null) {
             com.setId(user.getCompany().getId());
             com.setName(user.getCompany().getName());
             res.setCompany(com);
         }
+
+        // ✅ Sửa lỗi ở đây: dùng user.getRole() thay vì user.getCompany()
         if (user.getRole() != null) {
-            roleUser.setId(user.getCompany().getId());
-            roleUser.setName(user.getCompany().getName());
+            roleUser.setId(user.getRole().getId());
+            roleUser.setName(user.getRole().getName());
             res.setRole(roleUser);
         }
+
+        // Set các thông tin còn lại
         res.setId(user.getId());
         res.setAddress(user.getAddress());
         res.setAge(user.getAge());
@@ -145,8 +151,8 @@ public class UserService {
         res.setGender(user.getGender());
         res.setCreatedAt(user.getCreatedAt());
         res.setUpdateAt(user.getUpdatedAt());
-        return res;
 
+        return res;
     }
 
     public ResUpdateUserDTO convertToResUpdateUserDTO(User user) {
