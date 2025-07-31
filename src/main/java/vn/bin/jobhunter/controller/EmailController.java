@@ -23,7 +23,7 @@ public class EmailController {
         // this.emailService.sendEmailSync("biennguyen0344@gmail.com", "test send
         // email", "<h1><b> hello</b></h1>", false,
         // true);
-        this.emailService.sendEmailFromTemplateSync("biennguyen0344@gmail.com", "test send email", "test");
+        this.emailService.sendEmailFromTemplateSync("biennguyen0344@gmail.com", "test send email", "job");
         return "ok";
     }
 
