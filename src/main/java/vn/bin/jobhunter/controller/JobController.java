@@ -9,6 +9,7 @@ import jakarta.validation.Valid;
 import vn.bin.jobhunter.domain.Job;
 import vn.bin.jobhunter.domain.response.ResultPaginationDTO;
 import vn.bin.jobhunter.domain.response.job.ResCreateJobDTO;
+import vn.bin.jobhunter.domain.response.job.ResUpdateJobDTO;
 import vn.bin.jobhunter.service.JobService;
 import vn.bin.jobhunter.util.annotation.ApiMessage;
 import vn.bin.jobhunter.util.error.IdInvalidException;
@@ -43,7 +44,7 @@ public class JobController {
 
     @PutMapping("/jobs")
     @ApiMessage("update a job")
-    public ResponseEntity<ResCreateJobDTO> update(@Valid @RequestBody Job job) throws IdInvalidException {
+    public ResponseEntity<ResUpdateJobDTO> update(@Valid @RequestBody Job job) throws IdInvalidException {
         Optional<Job> currentJob = this.jobService.fetchJobById(job.getId());
         if (!currentJob.isPresent()) {
             throw new IdInvalidException("job not found");

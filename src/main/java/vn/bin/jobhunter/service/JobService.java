@@ -14,6 +14,7 @@ import vn.bin.jobhunter.domain.Job;
 import vn.bin.jobhunter.domain.Skill;
 import vn.bin.jobhunter.domain.response.ResultPaginationDTO;
 import vn.bin.jobhunter.domain.response.job.ResCreateJobDTO;
+import vn.bin.jobhunter.domain.response.job.ResUpdateJobDTO;
 import vn.bin.jobhunter.repository.CompanyRepository;
 import vn.bin.jobhunter.repository.JobRepository;
 import vn.bin.jobhunter.repository.SkillRepository;
@@ -74,7 +75,7 @@ public class JobService {
 
     }
 
-    public ResCreateJobDTO update(Job j, Job jobInDB) {
+    public ResUpdateJobDTO update(Job j, Job jobInDB) {
         if (j.getSkills() != null) {
             List<Long> repSkills = j.getSkills()
                     .stream().map(x -> x.getId())
@@ -105,7 +106,7 @@ public class JobService {
         Job currentJob = this.jobRepository.save(jobInDB);
 
         // convert
-        ResCreateJobDTO dto = new ResCreateJobDTO();
+        ResUpdateJobDTO dto = new ResUpdateJobDTO();
         dto.setId(currentJob.getId());
         dto.setName(currentJob.getName());
         dto.setSalary(currentJob.getSalary());
@@ -115,14 +116,7 @@ public class JobService {
         dto.setStartDate(currentJob.getStartDate());
         dto.setEndDate(currentJob.getEndDate());
         dto.setActive(currentJob.isActive());
-        dto.setCreatedAt(currentJob.getCreatedAt());
-        dto.setCreatedBy(currentJob.getCreatedBy());
-        if (currentJob.getSkills() != null) {
-            List<String> skills = currentJob.getSkills()
-                    .stream().map(item -> item.getName())
-                    .collect(Collectors.toList());
-            dto.setSkills(skills);
-        }
+
         return dto;
 
     }

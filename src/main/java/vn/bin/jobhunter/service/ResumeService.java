@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Service;
 
 import vn.bin.jobhunter.domain.Job;
 import vn.bin.jobhunter.domain.Resume;
@@ -19,6 +20,7 @@ import vn.bin.jobhunter.repository.JobRepository;
 import vn.bin.jobhunter.repository.ResumeRepository;
 import vn.bin.jobhunter.repository.UserReposiriory;
 
+@Service
 public class ResumeService {
     private final UserReposiriory userReposiriory;
     private final JobRepository jobRepository;
